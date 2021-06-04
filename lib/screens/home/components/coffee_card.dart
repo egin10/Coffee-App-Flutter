@@ -1,83 +1,28 @@
 import 'package:coffee_app/constants.dart';
 import 'package:coffee_app/models/Coffee.dart';
-import 'package:coffee_app/screens/home/components/categories.dart';
 import 'package:coffee_app/size_config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class BestCoffee extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      clipBehavior: Clip.none,
-      child: Container(
-        margin: EdgeInsets.only(top: SizeConfig.screenHeight! * 0.13),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              margin: EdgeInsets.symmetric(
-                  horizontal: SizeConfig.screenWidth! * 0.05),
-              child: Text(
-                "Best Coffee in Town",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Categories(),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              clipBehavior: Clip.none,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  ...List.generate(
-                    coffees.length,
-                    (index) => Padding(
-                      padding:
-                          EdgeInsets.only(left: SizeConfig.screenWidth! * 0.05),
-                      child: BestCoffeeCard(
-                        coffee: coffees[index],
-                        press: () {
-                          print("Love ${coffees[0].name}");
-                        },
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: SizeConfig.screenWidth! * 0.05,
-                  )
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class BestCoffeeCard extends StatelessWidget {
-  const BestCoffeeCard({
+class CoffeeCard extends StatelessWidget {
+  const CoffeeCard({
     Key? key,
     required this.coffee,
     required this.press,
+    this.isBestCoffee = false,
   }) : super(key: key);
 
   final Coffee coffee;
   final GestureTapCallback press;
+  final bool isBestCoffee;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 30),
-      height: SizeConfig.screenHeight! * 0.35,
+      height: (isBestCoffee)
+          ? SizeConfig.screenHeight! * 0.45
+          : SizeConfig.screenHeight! * 0.30,
       width: SizeConfig.screenWidth! * 0.55,
       child: Stack(
         children: [
@@ -86,7 +31,9 @@ class BestCoffeeCard extends StatelessWidget {
             left: 0,
             right: 0,
             child: Container(
-              height: SizeConfig.screenHeight! * 0.3,
+              height: (isBestCoffee)
+                  ? SizeConfig.screenHeight! * 0.35
+                  : SizeConfig.screenHeight! * 0.25,
               decoration: BoxDecoration(
                 color: kPrimaryColor,
                 borderRadius: BorderRadius.circular(20),
@@ -143,29 +90,31 @@ class BestCoffeeCard extends StatelessWidget {
                           ),
                         ),
                         Spacer(),
-                        GestureDetector(
-                          onTap: press,
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                height: 30,
-                                width: 30,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50),
+                        (isBestCoffee)
+                            ? GestureDetector(
+                                onTap: press,
+                                child: Stack(
+                                  alignment: Alignment.center,
+                                  children: [
+                                    Container(
+                                      height: 30,
+                                      width: 30,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.circular(50),
+                                      ),
+                                    ),
+                                    SvgPicture.asset(
+                                      "assets/icons/love.svg",
+                                      color: Colors.red,
+                                      width: 20,
+                                      height: 20,
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ],
                                 ),
-                              ),
-                              SvgPicture.asset(
-                                "assets/icons/love.svg",
-                                color: Colors.red,
-                                width: 20,
-                                height: 20,
-                                fit: BoxFit.cover,
-                              ),
-                            ],
-                          ),
-                        ),
+                              )
+                            : Spacer(),
                       ],
                     ),
                   ],
@@ -177,8 +126,12 @@ class BestCoffeeCard extends StatelessWidget {
             right: 5,
             top: 0,
             child: Container(
-              height: SizeConfig.screenHeight! * 0.2,
-              width: SizeConfig.screenWidth! * 0.2,
+              height: (isBestCoffee)
+                  ? SizeConfig.screenHeight! * 0.35
+                  : SizeConfig.screenHeight! * 0.20,
+              width: (isBestCoffee)
+                  ? SizeConfig.screenWidth! * 0.35
+                  : SizeConfig.screenWidth! * 0.20,
               child: Image(
                 image: AssetImage(coffee.image),
                 fit: BoxFit.cover,

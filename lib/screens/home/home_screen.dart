@@ -1,4 +1,5 @@
 import 'package:coffee_app/components/app_bar.dart';
+import 'package:coffee_app/components/bottom_nav_bar.dart';
 import 'package:coffee_app/screens/home/components/body.dart';
 import 'package:coffee_app/size_config.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,7 @@ class HomeScreen extends StatelessWidget {
       extendBodyBehindAppBar: true,
       appBar: buildAppBar(),
       body: Body(),
+      bottomNavigationBar: BottomNavBar(),
     );
   }
 }

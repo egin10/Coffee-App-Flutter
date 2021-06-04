@@ -7,6 +7,7 @@ AppBar buildAppBar() {
     leading: IconButton(
       icon: Icon(Icons.center_focus_strong_outlined),
       color: Colors.white,
+      iconSize: 30,
       onPressed: () {
         print("List onPressed!");
       },
@@ -15,6 +16,7 @@ AppBar buildAppBar() {
       IconButton(
         icon: Icon(Icons.search_rounded),
         color: Colors.white,
+        iconSize: 30,
         onPressed: () {
           print("Search onPressed!");
         },
@@ -22,6 +24,7 @@ AppBar buildAppBar() {
       IconButton(
         icon: Icon(Icons.shopping_cart_rounded),
         color: Colors.white,
+        iconSize: 30,
         onPressed: () {
           print("Shopping Cart onPressed!");
         },
