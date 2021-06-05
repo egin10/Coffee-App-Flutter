@@ -20,7 +20,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: SizeConfig.screenHeight! * .09,
+      height: SizeConfig.screenHeight! * .1,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(

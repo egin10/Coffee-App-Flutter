@@ -1,4 +1,5 @@
 import 'package:coffee_app/models/Coffee.dart';
+import 'package:coffee_app/screens/detail/detail_screen.dart';
 import 'package:coffee_app/screens/home/components/coffee_card.dart';
 import 'package:coffee_app/size_config.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class MostPopulers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var mostPopulerCoffees = coffees..shuffle();
+    var mostPopuler = mostPopulerCoffees..shuffle();
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
@@ -19,13 +20,20 @@ class MostPopulers extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           ...List.generate(
-            mostPopulerCoffees.length,
+            mostPopuler.length,
             (index) => Padding(
               padding: EdgeInsets.only(left: SizeConfig.screenWidth! * 0.05),
               child: CoffeeCard(
-                coffee: mostPopulerCoffees[index],
-                press: () {
-                  print("Love ${mostPopulerCoffees[0].name}");
+                coffee: mostPopuler[index],
+                favPress: () {
+                  print("Love ${mostPopuler[index].name}");
+                },
+                cardPress: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              DetailScreen(coffee: mostPopuler[index])));
                 },
               ),
             ),
