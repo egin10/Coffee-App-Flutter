@@ -29,7 +29,7 @@ class BottomNav extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
               decoration: BoxDecoration(
-                color: Colors.blue[200],
+                color: kContainerColor,
                 borderRadius: BorderRadius.circular(8),
               ),
               child: Row(

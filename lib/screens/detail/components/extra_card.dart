@@ -3,8 +3,8 @@ import 'package:coffee_app/models/Extra.dart';
 import 'package:coffee_app/size_config.dart';
 import 'package:flutter/material.dart';
 
-class ExtrasCard extends StatelessWidget {
-  const ExtrasCard({
+class ExtraCard extends StatelessWidget {
+  const ExtraCard({
     Key? key,
     required this.extra,
   }) : super(key: key);
@@ -14,7 +14,7 @@ class ExtrasCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 20),
+      margin: EdgeInsets.symmetric(horizontal: 5),
       height: SizeConfig.screenHeight! * .26,
       width: SizeConfig.screenWidth! * .33,
       child: Stack(

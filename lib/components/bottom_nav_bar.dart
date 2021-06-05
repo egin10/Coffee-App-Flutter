@@ -59,10 +59,17 @@ class _BottomNavBarState extends State<BottomNavBar> {
       required int index}) {
     return GestureDetector(
       onTap: press,
-      child: Icon(
-        icon,
-        color: (_selected == index) ? kPrimaryColor : Colors.grey,
-        size: (_selected == index) ? 35 : 20,
+      child: Container(
+        height: 50,
+        width: 60,
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+        ),
+        child: Icon(
+          icon,
+          color: (_selected == index) ? kPrimaryColor : Colors.grey,
+          size: (_selected == index) ? 37 : 20,
+        ),
       ),
     );
   }

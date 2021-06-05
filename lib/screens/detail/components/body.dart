@@ -122,7 +122,7 @@ class Body extends StatelessWidget {
                             ...List.generate(
                                 coffee.extras.length,
                                 (index) =>
-                                    ExtrasCard(extra: coffee.extras[index])),
+                                    ExtraCard(extra: coffee.extras[index])),
                           ],
                         ),
                       ),
